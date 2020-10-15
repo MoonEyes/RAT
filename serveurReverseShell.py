@@ -20,6 +20,10 @@ while command != "exit":
         f.write(message)
         f.close()
         #image.save("monitor-screen.png")
+    if command == "candc":
+        message= conf.recv(262144)
+        message=message.decode("UTF-8")
+        print(message)
     else:
         message = conf.recv(262144)
         print(message)
