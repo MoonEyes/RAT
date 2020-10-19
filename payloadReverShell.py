@@ -61,7 +61,7 @@ finally:
 try:
     from threading import Thread
 except ImportError:
-    subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'pathlib'])
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'threading'])
 finally:
     from threading import Thread
 
