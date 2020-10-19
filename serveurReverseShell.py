@@ -10,6 +10,10 @@ mon_socket.bind(("",1243))
 mon_socket.listen(5)
 conf,info = mon_socket.accept()
 
+
+
+
+
 print("Connexion établie %s "%(format(info)))
 while command != "exit":
     command = input()
