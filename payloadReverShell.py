@@ -4,6 +4,7 @@ import subprocess
 import sys
 import os
 
+
 ##variable
 os = 0
 message = str()
@@ -57,7 +58,12 @@ except ImportError:
     subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'pathlib'])
 finally:
     from SMWinservice import SMWinservice
-
+try:
+    from threading import Thread
+except ImportError:
+    subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'pathlib'])
+finally:
+    from threading import Thread
 
 
 ## Création du fichier
