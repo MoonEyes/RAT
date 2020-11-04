@@ -8,7 +8,7 @@ from socketserver import ThreadingMixIn
 command = str()
 counter = 0
 host = ""
-portS = "1234"
+port = 1234
 choixMenu = ()
 
 #class
@@ -17,6 +17,8 @@ class myThread(Thread):
         Thread.__init__(self)
         self.ip = ip
         self.port = port
+
+
         print ("[+] Nouveau thread démarré pour " + ip + ":" + str(port))
 
     def run(self):
@@ -48,8 +50,9 @@ class myThread(Thread):
 
 
 # Création du socket
+
 mon_socket = s.socket(s.AF_INET,s.SOCK_STREAM)
-s.setsockopt(s.SOL_SOCKET, s.SO_REUSEADDR, 1)
+#s.setsockopt(s.SOL_SOCKET, s.SO_REUSEADDR, 1)
 mon_socket.bind((host,port))
 mythreadTab = []
 print("Serveur prêt, en attente de requêtes")
@@ -83,12 +86,22 @@ while True:
 
     elif choixMenu == "2":
         for t in mythreadTab:
-            print("%s Connexion : adresse %s, port %s"%(t,mythreadTab[t,[0,0],mythreadTab[t,[0,1]]))
+            mythreadTab.active_count()
+            print("%s Connexion : adresse %s, port %s"%(t,mythreadTab[t,self.ip],mythreadTab[t,self.port]))
+
 
     elif choixMenu == "3":
+        print("Selectionnée la connexion souhaité")
+        x = input()
+        for t in mythreadTab:
+            if x == t:
+                t.join()
 
-
-    elif choixMenu == "3":
+    elif choixMenu == "4":
+        print("Est-tu sur de quttez le programme  y/n")
+        x = input()
+        if x == y:
+            False
 
 
 # 1 Faire les connecter les agents
@@ -103,8 +116,6 @@ while True:
 
 
 
-for t in mythreadTab:
-    t.join()
 
 
 ### Code multithearding en cour

